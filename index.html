@@ -6,390 +6,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
     <title>Gemma Truong's Little World</title>
-    <style>
-        * {
-            font-family: "Leckerli One", cursive;
-            font-weight: 400;
-            font-style: normal;
-        }
-        
-        :root {
-            --bg-image: url("images/light-background.jpg");
-            }
 
-            [data-theme="dark"] {
-            --bg-image: url("images/dark-background.jpg");
-            }
-
-        body {
-            background-image: var(--bg-image);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100vh;         
-            margin: 0;
-            font-size: 15px;
-        }
-/*
-        body.dark::before {
-            background: rgba(0,0,0,0.55);
-        }
-
-        body:not(.dark)::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.4),
-                rgba(0,0,0,0.1)
-            );
-        }
-*/
-
-
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #666f6a, #666f6a, #2d3931, #59625d);
-            backdrop-filter: blur(10px);
-            padding-left: 10px;
-            padding-right: 16px;
-            padding-top: 10px;
-            padding-bottom: 6px;
-            z-index: 2000;
-            transition: all 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 10px 16px rgba(12, 70, 45, 0.3);
-            border: none;
-        }
-
-        nav:hover {
-            transform: translateY(-2px);
-        }
-
-        nav.scrolled {
-            padding: 1rem 5%;
-            box-shadow: 0 5px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-right: 20px;
-        }
-
-        .logo img{
-            width: 300px;
-            height: auto;
-            border-radius: 5px;
-            margin: 0px;
-            padding: 0px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #8fe1c0;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #79d3af, #4a9c8c);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background-color: transparent;
-            border: none;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(209, 206, 8, 0.4);
-            padding: 2px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            margin-right: 20px;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.15);
-        }
-
-        .theme-icon {
-            font-size: 26px;
-            transition: transform 0.3s ease;
-        }
-
-        .theme-toggle:hover .theme-icon {
-            transform: rotate(20deg);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 5%;
-            position: relative;
-        }
-
-        .intro {
-            max-width: 1400px;
-            text-align: center;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            margin-bottom: 20px;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            font-weight: 700;
-            background: linear-gradient(90deg, #666f6a, #d8a8cf);
-  
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero h2 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: #61a385;
-            text-shadow: 0 0 5px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease 0.4s both;
-            margin: 0;
-        }
-
-        .name-object {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 1rem;            
-        }
-        .name-object img {
-            width: 35px;
-            height: auto;
-            border-radius: 50%;
-            animation: fadeInUp 1s ease 0.5s both;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: #666f6a;
-            text-shadow: 0 0 5px rgba(0,0,0,0.2);
-            margin: 0 auto 3rem;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-        .hero .motto {
-            margin-top: 20px;
-            font-size: 22px;
-            color: #666f6a;
-            text-shadow: 0 0 5px rgba(0,0,0,0.2);
-            font-style: italic;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.8s both;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            font-size: 25px;
-            font-weight: 600;
-            border: none;
-            color: #666f6a;
-            box-shadow: 0 4px 12px rgba(12, 70, 45, 0.15);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #61a385, #b8e7dd);
-            box-shadow: 0 10px 30px rgba(12, 70, 45, 0.2);
-            margin-right: 20px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 234, 172, 0.6);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, white, #ccf6df);
-            color: #61a385;
-            border: 2px solid #61a385;
-        }
-
-        .btn-secondary:hover {
-            background: #61a385;
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #2d3931, #8fe1c0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666f6a;
-            font-size: 1.2rem;
-            line-height: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid #61a385;
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-/*
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-*/
-        .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: radial-gradient(circle, #79d3af, #4a9c8c);
-            box-shadow: 0 20px 60px rgba(102, 234, 172, 0.4);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            align-items: center;
-            justify-content: center;
-            display: flex;
-            color: #79d3af;
-        }
-
-        .skill-card h3 {
-            text-align: center;
-            font-size: 1.8rem;
-            color: #d8a8cf;
-            text-shadow: 0 0 5px rgba(0,0,0,0.2);
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-card p {
-            color: #666f6a;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .tech-tag {
-            border-radius: 8px;
-            padding: 2px 2px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease, transform 0.3s ease;
-        }
-        .tech-tag:hover {
-            transform: scale(1.2);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-    </style>
 </head>
 <body>
     <div class="background-animation"></div>
@@ -413,10 +32,10 @@
     </nav>
 
     <section id="home" class="hero">
-        <div class="intro">
-            <h1>Welcome to my Litle World</h1>
+        <div class="container">
+            <h1 >Welcome to my Litle World</h1>
             <div class="name-object">
-                <h2>Hi, I'm Gemma</h2>
+                <h2 id="typing"></h2>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGQElEQVR4nO1ae4hUVRg/pZX2sCJ70nN72oOoKK0oev6RERU0ROp6z5nZphT9I4oSii7sfN/M+oI2iFjS1vudGR8T9DKkB2QURWRC7ydZamqmUZmumenGmZ2x2Xu/+5jZ2ZndZX4wMHDPud/jfO9zhWiiiSaaaKKJJqqFJIhJjfuUxt66/gj2K43TRCORyMFVUuOuugt/QAm4J57FGxsivMplWpTGrQ0TvviThL/Fdfv5dRW+1UkfpzR822jhDyhB47ppZJ9QF+GtbnuM0vg+w8iT7rVxJ3NZ0VfLTgxifu82z1yn+9dUbY9zr1OELzMx4aNkl324GFT09h6kCHKMGS41zzyManjJdVL7kjl7fJBluQOq1PhAFMUWlfuCbdsHi8GCJJznNT94Z3Zn52HutQmnfQIjzJowGorgY9f7P+F5gZU+MWFereTtB6mhjdH4l1NymWMFA95SIMOt7bdPY4dXyekr3eusXOYKzgqKdGaJWkJl4TZJuLc/IdgSz6bOYNfnMi3e9dhrabw5lJaTuoWxskXcWkm4ig2MBP9KB+6shewiTnixJPjDRaBHUXqirxCEzzGM7Y7lF46NFGTN+/u7zi6r2z7GSyc9MSAz7DJ1ysCEXzr3FEW4wR3ILMK7/Pa06Y5TTYHiZQrejEpXanzLe6o4g11L8IavEgg3tzodp1cn/KK5R5kAxJjx7BDmO3mzxEej0pYEjzFu8CnLp5O+2k8BpTjFWU8gkl1dh3CalQQLgvaZYsSvNJYaLo9KvxDgWCXybsdaTH/lr47l7UMjK0BqfJYRfmUsnx8VuI8gwzMB2yvJz2atJNzGKPF5nm7qmkAF9ClhcTThCZ9gAsqaaTT/iKB9yXzH0Urj7z5muEJUCKUxz0T3Hr+0KwneDlWChseDhc+m7vWUrhrXJZbiiea5MSOpsSuc0BD9Eey3nHQrL7zG66SGv/06LZMRpIYPGi7EgJWAeySlbvIowMritSZXu0xmu8y1n2uem3QiCX4YCQqwdOoGHxfAKZ7ykuDrkt9Z3Zkzi6Vqh3GFojvkTRMiCb8JML2eoSE87DcyBscBAtu90QQYkxqD40f7JQGEl5TWGWWaX2Ggksu0mJRXSHumBO4rg+8ptMWEa2utACObiNTyaqCoKagcpifnicP6cMIuhRL+VGPTX8617CwK0Z5PK3NEAEzv7sdAG6XOEpWN22p38hrf41r28LEX4XduH1I6dZ/fHjO98R2SUlqJiJAa4jUUfp1ajMeLajB9SepspiLbbWmY5M88Oj6MOFHpci7YsIGp5OuDbUY53Pp4NnW9jw9uqEAB6wd+8vBPlPlDJMQJZCVdlkmdLGO5TEsYLaPYmpg/QVLUEooAGUKv26vt0Z61Guf4WEGimtFbFaYPom4TYe0dV1nd804yJuhlDihcAZgdmPCDOBm2uu0xbD9A+JB7rdL4KsPcxjAaSuPP1fs9rhn0u4Fkzh4vNXwfNiYzQ0mOyQSlz/F7t+k7qj99+LHUtQ46Ek77BE/vT9BTPoQ0scHM5BiXafN7r5XF+6sLePinKcXrInwJpqNyDz+NwHJZ6rTgGT9mhQ+4GBMh4O2VhLeKRkARJpgT/txMh8zzVid9nvduEDfX1P99psV1gyRYwJzKqtL8UBG863lenDGUo6Csyv1+vmg07L4B5ovek4GnzHOp01aUIiWokfIx/dfChrR1Qyy/cKzU8KGXSZhlnrkDZuE22QWlYVkFZr82bEhbdyQ1nOyp4c0dHcEd7kEqFwckwaZoJw+bzO2TGIqYvqT9Ivc9otSwg0tv5V2alcMLIgmvYYeizKViKEM66cnm5F3Bar3U8Gs/BTjwYGmP+R9u9ubGNz1ZDAcogmSECL7s//W4PGx92J3kkIMieDpEqK2FGV3fDHJLsOljpxhuiOXzoyTBK4Gn2uf7F4aku1Vcyz0sMDNvH8ldsZelsxlSw8wABXxRqiqHLeLmSo1go09KW8Fegg7044ahBqtw3w87uTjAf20KO80eMZIQ13C7Nz2yAW+f0nC3GImQlHokND1m8WExkqEInwmo9NjP4UYU7NX2aPPF2IC/4xnOmKrtcYrwszK//6riL7mGO6zuzJmS4JegW6YRD0vDpKB7xiaaaKKJJsTg4j9W8bLKR1FYDQAAAABJRU5ErkJggg==" alt="ruby-gemstone">
             </div>
 
@@ -440,24 +59,25 @@
     
     <!-- About Section -->
     <section id="about">
-        <h2 class="section-title">✧*:.｡.About Me.｡.:*✧</h2>
-        <p class="section-subtitle">I'm a Computer Science student who enjoys building projects that feel useful.
-             <br> I do full-stack web development, data analysis, and machine learning.</p>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <span class="skill-icon">𓍢🌷͙֒</span>
-                <h3>Problem Solver</h3>
-                <p>I thrive on tackling complex challenges and transforming them into elegant, efficient solutions. Every problem is an opportunity to innovate.</p>
-            </div>
-            <div class="skill-card fade-in">
-                <span class="skill-icon">🐋</span>
-                <h3>Fast Learner</h3>
-                <p>Technology evolves rapidly, and so do I. I'm constantly exploring new frameworks, tools, and methodologies to stay ahead of the curve.</p>
-            </div>
-            <div class="skill-card fade-in">
-                <span class="skill-icon">🍀</span>
-                <h3>Detail-Oriented</h3>
-                <p>From pixel-perfect interfaces to optimized backend logic, I believe that excellence lies in the details. Quality is never an accident.</p>
+        <div class="container"></div>
+            <h2 class="section-title">✧*:.｡.About Me.｡.:*✧</h2>
+            <p class="section-subtitle">I'm a Computer Science student who enjoys building things that feel useful.</p>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <span class="skill-icon">𓍢🌷͙֒</span>
+                    <h3>Problem Solver</h3>
+                    <p>I thrive on tackling complex challenges and transforming them into elegant, efficient solutions. Every problem is an opportunity to innovate.</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <span class="skill-icon">🐋</span>
+                    <h3>Fast Learner</h3>
+                    <p>Technology evolves rapidly, and so do I. I'm constantly exploring new frameworks, tools, and methodologies to stay ahead of the curve.</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <span class="skill-icon">🍀</span>
+                    <h3>Detail-Oriented</h3>
+                    <p>From pixel-perfect interfaces to optimized backend logic, I believe that excellence lies in the details. Quality is never an accident.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -465,117 +85,181 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">‧˚୭🐾˚. Technical Skills .˚🐾୭˚‧</h2>
-        <p class="section-subtitle">My toolkit (the stuff I actually use)</p>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <span class="skill-icon">🎨</span>
-                <h3>Frontend Development</h3>
-                <p>Creating responsive, accessible, and performant user interfaces</p>
-                <div class="tech-stack">
-                    <img src="images/css-3.svg" alt="css3" class="tech-tag" style="width: 32px; height: auto;">
-                    <img src="images/html-logo.svg" alt="html" class="tech-tag" style="width: 32px; height: auto;">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACHElEQVR4nO2WT0hUURTGz3HUGUSEUNL8FxYmQgWF4UJRRDAQlRYuoqyViButdiUi7WoT0sZoIVorCcHMSKQ0cSEKKZX2oGhhhbQRDZRAxL6483jebjNKEr65A+eDj4Fz7rw5v3nnnXeIRCKRyErBIdhkEgBHACAA+1GsC4YAOLEvGgLg2GMSAEcAIAD7UawLhgA4//uDvOMn3WZuYZhwsZaRlcFIDDCyDzOa6hmLz+IAYLyPEArqHP3hlBCH89YCbC8SCnJ1PJjMKD7mfnqx0tOMXx8sBXg7pOMJCYz3T934l3HC8TzGtSuM9TcW34HJRzqu2mjznT7/cz4OHuKvE2b8QjVj6dW/Xs8CAOXz5eaDGwoymhsZn0bjBGB5knCmOHICBQIuyMac5QDKqsiOFkZqSiTIqROM1RnLATyvTBPu3CBkppsQbZc5tgBq3u8F8Pec/zFL4fnvnc/L8hFATZGGKsbzBzr2ecwEGOnRucd3CSUnI+d99039neQknwAG7lH49e9Nk+tXGT1dhLKzZkuo3UedV/uPF6sqZXybcONrs4TKczqn3ta+AHx8oQF2c+FRvRrc7zDvDDMjJ9NcJZRvtfjYQq/7CWmp0YtXrfCy1+z9zta9gStKoo/SAwNQ/j5FaG9i5B9x57lakxtrGHOD0c/PDBAu1TGKCtx//1CaW/jD24Sthd2m2gEC+GESAEcA4CuASCQSkR/6DRH0JVWM43R/AAAAAElFTkSuQmCC" 
-                        alt="javascript--v1"
-                        class="tech-tag"
-                        style="width: 40px; height: auto;">
-                    <img src="images/tailwind-css.svg" alt="tailwindcss" class="tech-tag" style="width: 24px; height: auto;">
-                    <img src="data:image/png;base64,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" 
-                        alt="react" 
-                        class="tech-tag"
-                        style="width: 40px; height: auto;">
+        <div class="container"></div>
+            <h2 class="section-title">‧˚୭🐾˚. Technical Skills .˚🐾୭˚‧</h2>
+            <p class="section-subtitle">My toolkit (the stuff I actually use)</p>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <span class="skill-icon">🎨</span>
+                    <h3>Frontend Development</h3>
+                    <p>Crafting responsive, accessible interfaces that blend performance with intuitive user experience. Focused on clean design systems, smooth interactions, and production-ready code.</p>
+                    <div class="tech-stack">
+                        <img src="images/css-3.svg" alt="css3" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/html-logo.svg" alt="html" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/js.svg" alt="Javascript" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/figma.png" alt="Figma" class="tech-tag" style="width: 28px; height: auto;">
+                        <img src="images/tailwind-css.svg" alt="tailwindcss" class="tech-tag" style="width: 24px; height: auto;">
+                        <img src="images/react.svg" alt="React" class="tech-tag" style="width: 32px; height: auto;">
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card fade-in">
-                <span class="skill-icon">⚙️</span>
-                <h3>Backend Development</h3>
-                <p>Building robust, scalable server-side applications and APIs</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">C++</span>
-                    <span class="tech-tag">C</span>
-                    <span class="tech-tag">F#</span>
-                    <span class="tech-tag">Linux</span>
+                <div class="skill-card fade-in">
+                    <span class="skill-icon">⚙️</span>
+                    <h3>Backend Development</h3>
+                    <p>Building secure, scalable APIs and server-side systems with clean, maintainable architecture.</p>
+                    <div class="tech-stack">
+                        <img src="images/python.png" alt="python" class="tech-tag" style="width: 34px; height: auto;">
+                        <img src="images/c++.png" alt="c++" class="tech-tag" style="width: 34px; height: auto;">
+                        <img src="images/c.svg" alt="c" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/F_Sharp.svg" alt="F#" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/flask.png" alt="Flask" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/fastapi.svg" alt="FastAPI" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/linux.svg" alt="Linux" class="tech-tag" style="width: 35px; height: auto;">
+                        <img src="images/railway.svg" alt="Railway" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/github.svg" alt="Github" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/visual_studio.svg" alt="Visual Studio 2022" class="tech-tag" style="width: 32px; height: auto;">
+                        <img src="images/vscode.png" alt="VS Code" class="tech-tag" style="width: 32px; height: auto;">
+                    </div>
                 </div>
-            </div>
-            <div class="skill-card fade-in">
-                <span class="skill-icon">📚</span>
-                <h3>Databases</h3>
-                <p>Designing, implementing, and optimizing database systems</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">SQLite</span>
+                <div class="skill-card fade-in">
+                    <span class="skill-icon">📚</span>
+                    <h3>Databases</h3>
+                    <p>Designing and optimizing relational database systems to ensure data integrity, performance, and reliable application scalability. Still in process of learning and understanding.</p>
+                    <div class="tech-stack">
+                        <img src="images/sql.png" alt="SQL" class="tech-tag" style="width: 36px; height: auto;">
+                        <img src="images/mysql.svg" alt="MySQL" class="tech-tag" style="width: 36px; height: auto;">
+                        <img src="images/postgres.png" alt="PostgreSQL" class="tech-tag" style="width: 36px; height: auto;">
+                        <img src="images/sqlite.jpg" alt="SQLite" class="tech-tag" style="width: 32px; height: auto;">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My projects</h2>
+            <p class="section-subtitle">What I actually built in my learning journey</p>
 
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.querySelector('.theme-icon');
-        const html = document.documentElement;
+            <div class="projects-carousel" aria-label="Project carousel">
+                <button class="carousel-btn prev" type="button" aria-label="Previous projects">
+                    <img src="images/chevron-left.svg" alt="left arrow">
+                </button>
 
-        // Check for saved theme preference or default to 'dark'
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', currentTheme);
-        updateThemeIcon(currentTheme);
+                <div class="carousel-track" id="projectsTrack" tabindex="0" role="region" aria-label="Projects">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-overlay">
+                            <div class="content">
+                                <h3>Union Dental Website</h3>
+                                <p>A Full-stack Flask app with appointment booking, PDF patient forms, admin panel, and AI chatbot.</p><br>
+                                <p>Technologies: Python, Flask, Groq AI, HTML, CSS, SQLite, PostgreSQL, Railway</p>
+                            </div>
+                            <div class="project-link">
+                                <a href="https://web-production-2810e.up.railway.app/" target="_blank" class="demo">
+                                    Demo
+                                    <img src="images/link-external.svg" alt="Link">
+                                </a>
+                                <a href="https://github.com/gemmatruong/dental_web" target="_blank" class="view-code">
+                                    View code
+                                    <img src="images/github.svg" alt="GitHub">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-overlay">
+                            <div class="content">
+                                <h3>Restaurants Recommendation System</h3>
+                                <p>Users can search for restaurants by cuisine name, add restaurants to favorite list, rate a restaurant and get random restaurant suggestions.</p><br>
+                                <p>Tech stacks: C++, Visual Studio, heap, prioritize heap, stack</p>
+                            </div>
+                            <div class="project-link">
+                                <a href="https://github.com/gemmatruong" target="_blank" class="demo">
+                                    Demo
+                                    <img src="images/link-external.svg" alt="Link">
+                                </a>
+                                <a href="https://github.com/gemmatruong/Restaurant_Recommendation_System" target="_blank" class="view-code">
+                                    View code
+                                    <img src="images/github.svg" alt="GitHub">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        function updateThemeIcon(theme) {
-            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        }
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-overlay">
+                            <div class="content">
+                                <h3>Calendar and Schedule</h3>
+                                <p>A calendar and schedule app that helps users plan, manage, and visualize their daily events with intuitive UI and organized workflows.</p><br>
+                                <p>Tech stacks: C++, Visual Studio 2022, OOP, CLI</p>
+                            </div>
+                            <div class="project-link">
+                                <a href="https://github.com/gemmatruong" target="_blank" class="demo">
+                                    Demo
+                                    <img src="images/link-external.svg" alt="Link">
+                                </a>
+                                <a href="https://github.com/gemmatruong/Calendar_And_Schedule" target="_blank" class="view-code">
+                                    View code
+                                    <img src="images/github.svg" alt="GitHub">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-overlay">
+                            <div class="content">
+                                <h3>Rad Racer</h3>
+                                <p>Developed a Rad Racer-style racing game in Python using OOP principles, collision detection, and console-based rendering.</p><br>
+                                <p>Tech stacks: Python, Visual Studio 2022, OOP, CLI</p>
+                            </div>
+                            <div class="project-link">
+                                <a href="https://github.com/gemmatruong" target="_blank" class="demo">
+                                    Demo
+                                    <img src="images/link-external.svg" alt="Link">
+                                </a>
+                                <a href="https://github.com/gemmatruong/CECS277-Lab03/tree/main/Lab08" target="_blank" class="view-code">
+                                    View code
+                                    <img src="images/github.svg" alt="GitHub">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="project-overlay">
+                            <div class="content">
+                                <h3>The Maze</h3>
+                                <p>A Python console-based maze solver that reads a maze from a file and allows users to navigate from start to finish using directional movement.</p><br>
+                                <p>Tech stacks: Python, Visual Studio 2022, OOP, CLI</p>
+                            </div>
+                            <div class="project-link">
+                                <a href="https://github.com/gemmatruong" target="_blank" class="demo">
+                                    Demo
+                                    <img src="images/link-external.svg" alt="Link">
+                                </a>
+                                <a href="https://github.com/gemmatruong/CECS277-Lab03/tree/main/Lab04" target="_blank" class="view-code">
+                                    View code
+                                    <img src="images/github.svg" alt="GitHub">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+                <button class="carousel-btn next" type="button" aria-label="Next projects">
+                    <img src="images/chevron-right.svg" alt="right arrow">
+                </button>
+            </div>
+        </div>
+    </section>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="scripts.js"></script>
 
 </body>
 </html>
