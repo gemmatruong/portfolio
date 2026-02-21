@@ -74,7 +74,7 @@ html {
   --t-med: 300ms;
 
   /* Layout */
-  --container: 1400px;
+  --container: 100vw;
   --pad-x: 16px;
 }
 
@@ -837,4 +837,265 @@ section {
   color: var(--text-muted);
   font-size: 0.9rem;
   margin: 0;
+}
+
+
+/* =========================
+   Responsive — Large screens (1400px+)
+   ========================= */
+@media (min-width: 1400px) {
+  :root {
+    --pad-x: 32px;
+  }
+
+  .nav-container {
+    padding: 0 32px;
+  }
+
+  .logo img {
+    width: 340px;
+  }
+
+  .nav-links {
+    gap: 3rem;
+  }
+
+  section {
+    padding: 8rem 6%;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .timeline-content {
+    width: 500px;
+  }
+
+  .carousel-track {
+    grid-auto-columns: minmax(360px, 440px);
+    padding: 14px 60px;
+  }
+
+  .contact-methods {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =========================
+   Responsive — Tablet (601px – 899px)
+   ========================= */
+@media (max-width: 899px) and (min-width: 601px) {
+  .logo img {
+    width: 220px;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    min-height: 75vh;
+    padding: 0 6%;
+  }
+
+  #typing {
+    font-size: 1.6rem;
+  }
+
+  .hero .motto {
+    font-size: 18px;
+  }
+
+  .btn {
+    font-size: 20px;
+    padding: 0.85rem 1.75rem;
+  }
+
+  section {
+    padding: 4rem 5%;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Collapse timeline to single-column */
+  .timeline::before {
+    left: 18px;
+    transform: none;
+  }
+
+  .timeline-dot {
+    left: 18px;
+    transform: none;
+  }
+
+  .timeline-content {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 50px !important;
+    margin-right: 0 !important;
+  }
+
+  .carousel-track {
+    grid-auto-columns: minmax(260px, 340px);
+    padding: 14px 20px;
+  }
+
+  .contact-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   Responsive — Mobile (≤ 600px)
+   ========================= */
+@media (max-width: 600px) {
+  :root {
+    --pad-x: 12px;
+  }
+
+  /* Nav: stack logo + toggle, hide links behind hamburger pattern
+     (or wrap them below — no JS needed, links wrap naturally) */
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo img {
+    width: 160px;
+  }
+
+  .nav-links {
+    order: 3;               /* push below logo row */
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem 1.4rem;
+    padding: 6px 0 4px;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 70vh;
+    padding: 0 5%;
+    align-items: flex-start;
+    padding-top: 3rem;
+  }
+
+  .name-object {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #typing {
+    font-size: 1.3rem;
+    white-space: normal;   /* allow wrap on very small screens */
+    border-right: none;
+  }
+
+  .hero .motto {
+    font-size: 16px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    font-size: 18px;
+    padding: 0.8rem 1.5rem;
+  }
+
+  /* Sections */
+  section {
+    padding: 3rem 4%;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.7rem;
+    margin: 0 0 2.5rem;
+  }
+
+  .about-me {
+    max-width: 100%;
+  }
+
+  /* Skills */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Carousel */
+  .carousel-track {
+    grid-auto-columns: minmax(260px, 85vw);
+    padding: 10px 12px;
+    gap: 12px;
+  }
+
+  .project-card {
+    height: 360px;
+  }
+
+  /* Show overlay on mobile (no hover) */
+  .project-overlay {
+    transform: translateY(0);
+    background: linear-gradient(
+      to top,
+      rgba(20, 28, 23, 0.95),
+      rgba(20, 28, 24, 0.55)
+    );
+  }
+
+  /* Timeline — single column, left-aligned */
+  .timeline::before {
+    left: 14px;
+    transform: none;
+  }
+
+  .timeline-dot {
+    left: 14px;
+    transform: none;
+    top: 1.5rem;
+    width: 16px;
+    height: 16px;
+  }
+
+  .timeline-content {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 42px !important;
+    margin-right: 0 !important;
+    padding: 1.25rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Contact */
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .contact-method {
+    padding: 1.5rem;
+  }
 }
