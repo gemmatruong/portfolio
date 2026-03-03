@@ -460,6 +460,39 @@ section {
   text-align: center;
 }
 
+.about-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 80px;
+}
+
+.about-photo
+{
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 40px 60px rgba(105, 255, 220, 0.3);
+  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+
+.about-photo:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.about-content p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 70ch;
+  margin: 0;
+  font-size: 18px;
+}
+
 /* =========================
    Cards (skills, timeline, contact)
    ========================= */
