@@ -115,11 +115,21 @@ body {
   font-size: 15px;
   color: var(--text);
 
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+
   background-image: var(--bg-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+/* Fix background-attachment: fixed on iOS (causes blank/broken bg) */
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 /* optional: gentle overlay for readability (works both themes) */
@@ -381,6 +391,9 @@ nav.scrolled {
   justify-content: center;
   gap: 10px;
 
+  /* Prevent tiny tap targets on mobile */
+  min-height: 44px;
+
   transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease),
     background var(--t-med) var(--ease), color var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
 }
@@ -470,8 +483,7 @@ section {
   margin-bottom: 80px;
 }
 
-.about-photo
-{
+.about-photo {
   width: 100%;
   max-width: 400px;
   height: auto;
@@ -911,8 +923,6 @@ section {
 }
 
 
-
-
 /* =========================
    Responsive — Large screens (1400px+)
    ========================= */
@@ -1024,6 +1034,19 @@ section {
   .contact-methods {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Stack about section on tablet too */
+  .about-content {
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 40px;
+  }
+
+  .about-photo {
+    max-width: 320px;
+    /* Disable problematic shadow on smaller screens */
+    box-shadow: 0 20px 40px rgba(105, 255, 220, 0.2);
+  }
 }
 
 /* =========================
@@ -1034,8 +1057,7 @@ section {
     --pad-x: 12px;
   }
 
-  /* Nav: stack logo + toggle, hide links behind hamburger pattern
-     (or wrap them below — no JS needed, links wrap naturally) */
+  /* ---- Nav ---- */
   .nav-container {
     flex-wrap: wrap;
     gap: 10px;
@@ -1046,7 +1068,7 @@ section {
   }
 
   .nav-links {
-    order: 3;               /* push below logo row */
+    order: 3;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
@@ -1056,14 +1078,19 @@ section {
 
   .nav-links a {
     font-size: 1rem;
+    /* Larger tap targets */
+    padding: 4px 2px;
   }
 
-  /* Hero */
+  /* ---- Hero ---- */
   .hero {
     min-height: 70vh;
-    padding: 0 5%;
+    padding: 2rem 5% 3rem;
     align-items: flex-start;
-    padding-top: 3rem;
+  }
+
+  .container {
+    padding: 0 8px;
   }
 
   .name-object {
@@ -1073,12 +1100,17 @@ section {
 
   #typing {
     font-size: 1.3rem;
-    white-space: normal;   /* allow wrap on very small screens */
+    white-space: normal;
     border-right: none;
   }
 
   .hero .motto {
     font-size: 16px;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
   }
 
   .cta-buttons {
@@ -1094,7 +1126,7 @@ section {
     padding: 0.8rem 1.5rem;
   }
 
-  /* Sections */
+  /* ---- Sections ---- */
   section {
     padding: 3rem 4%;
   }
@@ -1105,17 +1137,43 @@ section {
     margin: 0 0 2.5rem;
   }
 
+  /* ---- About ---- */
   .about-me {
     max-width: 100%;
+    padding: 12px;
   }
 
-  /* Skills */
+  /* Stack photo above text on mobile */
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .about-photo {
+    max-width: 260px;
+    width: 80%;
+    /* Lighter shadow — heavy shadows render poorly on mobile */
+    box-shadow: 0 16px 32px rgba(105, 255, 220, 0.2);
+  }
+
+  .about-content p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* ---- Skills ---- */
   .skills-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 
-  /* Carousel */
+  .skill-card {
+    padding: 1.5rem;
+  }
+
+  /* ---- Carousel ---- */
   .carousel-track {
     grid-auto-columns: minmax(260px, 85vw);
     padding: 10px 12px;
@@ -1126,7 +1184,7 @@ section {
     height: 360px;
   }
 
-  /* Show overlay on mobile (no hover) */
+  /* Always show overlay on mobile (no hover on touch) */
   .project-overlay {
     transform: translateY(0);
     background: linear-gradient(
@@ -1136,7 +1194,7 @@ section {
     );
   }
 
-  /* Timeline — single column, left-aligned */
+  /* ---- Timeline — single column, left-aligned ---- */
   .timeline::before {
     left: 14px;
     transform: none;
@@ -1162,7 +1220,7 @@ section {
     font-size: 1.3rem;
   }
 
-  /* Contact */
+  /* ---- Contact ---- */
   .contact-methods {
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -1170,5 +1228,61 @@ section {
 
   .contact-method {
     padding: 1.5rem;
+  }
+
+  /* ---- Footer ---- */
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+
+  .social-links {
+    gap: 1.2rem;
+  }
+}
+
+/* =========================
+   Extra small phones (≤ 380px)
+   ========================= */
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.2rem;
+  }
+
+  #typing {
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    font-size: 16px;
+    max-width: 240px;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .logo img {
+    width: 130px;
+  }
+
+  .about-photo {
+    max-width: 200px;
+  }
+
+  .skill-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .timeline-content {
+    margin-left: 34px !important;
+    padding: 1rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.1rem;
   }
 }
