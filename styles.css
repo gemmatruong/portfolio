@@ -1061,10 +1061,11 @@ section {
   .nav-container {
     flex-wrap: wrap;
     gap: 10px;
+    font-size: 12px;
   }
 
   .logo img {
-    width: 160px;
+    width: 140px;
   }
 
   .nav-links {
