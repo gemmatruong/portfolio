@@ -931,6 +931,10 @@ section {
     --pad-x: 32px;
   }
 
+  .hamburger {
+    display: none;
+  }
+
   .nav-container {
     padding: 0 32px;
   }
@@ -971,6 +975,10 @@ section {
 @media (max-width: 899px) and (min-width: 601px) {
   .logo img {
     width: 220px;
+  }
+
+  .hamburger {
+    display: none;
   }
 
   .nav-links {
@@ -1059,29 +1067,81 @@ section {
 
   /* ---- Nav ---- */
   .nav-container {
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 12px;
+      gap: 10px;
   }
 
   .logo img {
-    width: 140px;
+      width: 140px;
   }
 
+  /* Hide links by default on mobile */
   .nav-links {
-    order: 3;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.9rem 1.4rem;
-    padding: 6px 0 4px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 12px 20px 16px;
+      gap: 0;
+      background: linear-gradient(135deg, #666f6a, #2d3931);
+      border-top: 1px solid rgba(143, 225, 192, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      z-index: 1999;
+  }
+
+  .nav-links.open {
+      display: flex;
+  }
+
+  .nav-links li {
+      border-bottom: 1px solid rgba(143, 225, 192, 0.12);
+  }
+
+  .nav-links li:last-child {
+      border-bottom: none;
   }
 
   .nav-links a {
-    font-size: 1rem;
-    /* Larger tap targets */
-    padding: 4px 2px;
+      display: block;
+      font-size: 1.1rem;
+      padding: 13px 4px;
   }
+
+  /* Hamburger button */
+  .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 10px 12px;
+      cursor: pointer;
+      box-shadow: 0 0 18px rgba(143, 225, 192, 0.22);
+      transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+  }
+
+  .hamburger:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 22px rgba(143, 225, 192, 0.32);
+  }
+
+  .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--mint-200);
+      border-radius: 2px;
+      transition: transform var(--t-med) var(--ease), opacity var(--t-med) var(--ease);
+  }
+
+  /* Animate to X when open */
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* ---- Hero ---- */
   .hero {
