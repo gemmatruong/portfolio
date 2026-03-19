@@ -1,142 +1,178 @@
-// Theme Toggle
-const themeToggle = document.getElementById("themeToggle");
-const themeIcon = document.querySelector(".theme-icon");
-const html = document.documentElement;
+document.addEventListener("DOMContentLoaded", () => {
+  // Theme Toggle
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.querySelector(".theme-icon");
+  const html = document.documentElement;
 
-const savedTheme = localStorage.getItem("theme") || "dark";
-html.setAttribute("data-theme", savedTheme);
-updateIcon(savedTheme);
+  function updateIcon(theme) {
+    if (themeIcon) {
+      themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+    }
+  }
 
-themeToggle.addEventListener("click", () => {
-    const current = html.getAttribute("data-theme");
-    const newTheme = current === "dark" ? "light" : "dark";
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  html.setAttribute("data-theme", savedTheme);
+  updateIcon(savedTheme);
 
-    html.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    updateIcon(newTheme);
-});
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = html.getAttribute("data-theme");
+      const newTheme = current === "dark" ? "light" : "dark";
 
-// Hamburger menu
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navLinks.classList.toggle('open');
-});
-
-// Close when a nav link is clicked
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
+      html.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateIcon(newTheme);
     });
-});
+  }
 
-function updateIcon(theme) {
-    themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
-}
+  // Hamburger Menu
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
 
-// Typing Effect
-const text = "Hi, I'm Gemma";
-const typingElement = document.getElementById("typing");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("open");
+      navLinks.classList.toggle("open");
+    });
 
-let index = 0;
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("open");
+        navLinks.classList.remove("open");
+      });
+    });
+  }
 
-function type() {
+  // Typing Effect
+  const text = "Hi, I'm Gemma";
+  const typingElement = document.getElementById("typing");
+  let index = 0;
+
+  function type() {
+    if (!typingElement) return;
+
     if (index < text.length) {
-        typingElement.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, 100);
+      typingElement.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, 100);
     }
-}
+  }
 
-const track = document.getElementById("projectsTrack");
-const prevBtn = document.querySelector(".carousel-btn.prev");
-const nextBtn = document.querySelector(".carousel-btn.next");
+  if (typingElement) {
+    typingElement.textContent = "";
+    type();
+  }
 
-// Scroll by ~1 card width
-function scrollByCard(direction) {
-  const card = track.querySelector(".project-card");
-  if (!card) return;
+  // Carousel
+  const track = document.getElementById("projectsTrack");
+  const prevBtn = document.querySelector(".carousel-btn.prev");
+  const nextBtn = document.querySelector(".carousel-btn.next");
 
-  const gap = 18; // must match CSS gap
-  const amount = card.getBoundingClientRect().width + gap;
+  function scrollByCard(direction) {
+    if (!track) return;
 
-  track.scrollBy({ left: direction * amount, behavior: "smooth" });
-}
+    const card = track.querySelector(".project-card");
+    if (!card) return;
 
-prevBtn.addEventListener("click", () => scrollByCard(-1));
-nextBtn.addEventListener("click", () => scrollByCard(1));
+    const gap = 18; // must match CSS gap
+    const amount = card.getBoundingClientRect().width + gap;
 
-// Keyboard support (when track focused)
-track.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft") scrollByCard(-1);
-  if (e.key === "ArrowRight") scrollByCard(1);
-});
+    track.scrollBy({
+      left: direction * amount,
+      behavior: "smooth",
+    });
+  }
 
-let isDown = false;
-let startX = 0;
-let scrollLeft = 0;
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => scrollByCard(-1));
+  }
 
-track.addEventListener("mousedown", (e) => {
-  isDown = true;
-  track.classList.add("dragging");
-  startX = e.pageX;
-  scrollLeft = track.scrollLeft;
-});
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => scrollByCard(1));
+  }
 
-window.addEventListener("mouseup", () => {
-  isDown = false;
-  track.classList.remove("dragging");
-});
+  if (track) {
+    // Keyboard support
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") scrollByCard(-1);
+      if (e.key === "ArrowRight") scrollByCard(1);
+    });
 
-track.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const dx = (e.pageX - startX) * 1.2;
-  track.scrollLeft = scrollLeft - dx;
-});
+    // Drag support
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
 
+    track.addEventListener("mousedown", (e) => {
+      isDown = true;
+      track.classList.add("dragging");
+      startX = e.pageX;
+      scrollLeft = track.scrollLeft;
+    });
 
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+    window.addEventListener("mouseup", () => {
+      isDown = false;
+      track.classList.remove("dragging");
+    });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+    track.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const dx = (e.pageX - startX) * 1.2;
+      track.scrollLeft = scrollLeft - dx;
+    });
+  }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  // Navbar Scroll Effect
+  const navbar = document.getElementById("navbar");
+
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  }
+
+  // Intersection Observer for Fade-in Animations
+  const fadeElements = document.querySelectorAll(".fade-in");
+
+  if (fadeElements.length > 0) {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+          entry.target.classList.add("visible");
         }
-    });
-}, observerOptions);
+      });
+    }, observerOptions);
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    fadeElements.forEach((el) => observer.observe(el));
+  }
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  // Smooth Scroll for Navigation Links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetSelector = this.getAttribute("href");
+
+      if (!targetSelector || targetSelector === "#") return;
+
+      const target = document.querySelector(targetSelector);
+
+      if (target) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
     });
+  });
 });
-
-type();
