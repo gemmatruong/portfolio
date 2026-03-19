@@ -16,6 +16,23 @@ themeToggle.addEventListener("click", () => {
     updateIcon(newTheme);
 });
 
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+});
+
+// Close when a nav link is clicked
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+    });
+});
+
 function updateIcon(theme) {
     themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
 }
