@@ -125,14 +125,13 @@ body {
   background-attachment: fixed;
 }
 
-/* Fix background-attachment: fixed on iOS (causes blank/broken bg) */
 @supports (-webkit-touch-callout: none) {
   body {
     background-attachment: scroll;
   }
 }
 
-/* optional: gentle overlay for readability (works both themes) */
+/* gentle overlay for readability (works both themes) */
 body::before {
   content: "";
   position: fixed;
@@ -896,13 +895,18 @@ section {
 
 .footer {
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  padding: 2rem 1rem;
+  color: var(--mint-200);
+  font-size: 1rem;
+  padding: 1.2rem 1rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  background: linear-gradient(135deg, #666f6a, #666f6a, #2d3931, #59625d);
 }
 
 .social-links {
-  margin-top: 1rem;
+  margin-top: 12px;
   display: flex;
   justify-content: center;
   gap: 1.5rem;
