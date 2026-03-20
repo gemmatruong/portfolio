@@ -504,6 +504,114 @@ section {
   font-size: 18px;
 }
 
+.about-extra-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0 3rem;
+}
+
+.about-extra-card {
+    background: var(--surface);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 1.75rem;
+    transition: transform var(--t-med) var(--ease),
+                box-shadow var(--t-med) var(--ease),
+                border-color var(--t-med) var(--ease);
+}
+
+.about-extra-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(143, 225, 192, 0.75);
+}
+
+.about-extra-card h3 {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--pink-500);
+    margin: 0 0 1.2rem;
+}
+
+.resume-btn-wrapper {
+    text-align: center;
+    margin: 0 0 2.5rem;
+}
+
+/* Languages */
+.about-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.about-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.lang-name {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.lang-level {
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.lang-level.native {
+    background: rgba(143, 225, 192, 0.2);
+    border: 1px solid rgba(143, 225, 192, 0.5);
+    color: var(--mint-600);
+}
+
+[data-theme="dark"] .lang-level.native {
+    color: var(--mint-300);
+}
+
+.lang-level.fluent {
+    background: rgba(216, 168, 207, 0.2);
+    border: 1px solid rgba(216, 168, 207, 0.5);
+    color: var(--pink-500);
+}
+
+/* Hobbies */
+.hobby-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+}
+
+.hobby-tag {
+    font-size: 0.85rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(143, 225, 192, 0.12);
+    border: 1px solid rgba(143, 225, 192, 0.3);
+    color: var(--text-muted);
+    transition: transform var(--t-fast) var(--ease),
+                background var(--t-fast) var(--ease);
+}
+
+.hobby-tag:hover {
+    transform: scale(1.06);
+    background: rgba(143, 225, 192, 0.25);
+}
+
 /* =========================
    Cards (skills, timeline, contact)
    ========================= */
@@ -591,6 +699,8 @@ section {
   background: rgba(143, 225, 192, 0.4);
   border: 1px solid rgba(143, 225, 192, 0.6);
 }
+
+
 
 /* =========================
    Projects Carousel
