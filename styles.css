@@ -745,12 +745,13 @@ section {
 }
 
 /* Background images for each card */
-.project-card:nth-child(1) { background-image: url("images/dental-project.png"); }
-.project-card:nth-child(2) { background-image: url("images/restaurant-project.jpg"); }
-.project-card:nth-child(3) { background-image: url("images/calendar.jpg"); }
-.project-card:nth-child(4) { background-image: url("images/rad_racer.jpg"); }
-.project-card:nth-child(5) { background-image: url("images/mazegame.jpg"); }
-.project-card:nth-child(6) { background-image: url("images/valentine.jpg"); }
+.project-card:nth-child(1) { background-image: url("images/tinytasks.jpg"); }
+.project-card:nth-child(2) { background-image: url("images/dental-project.png"); }
+.project-card:nth-child(3) { background-image: url("images/restaurant-project.jpg"); }
+.project-card:nth-child(4) { background-image: url("images/calendar.jpg"); }
+.project-card:nth-child(5) { background-image: url("images/rad_racer.jpg"); }
+.project-card:nth-child(6) { background-image: url("images/mazegame.jpg"); }
+.project-card:nth-child(7) { background-image: url("images/valentine.jpg"); }
 
 .project-overlay {
   position: absolute;
@@ -1459,5 +1460,43 @@ section {
 
   .timeline-content h3 {
     font-size: 1.1rem;
+  }
+  .resume-btn-wrapper {
+    margin: 0 0 2rem;
+  }
+
+  .resume-btn-wrapper .btn {
+      font-size: 16px;
+      padding: 0.75rem 1.5rem;
+      width: 100%;
+      max-width: 260px;
+  }
+
+  .about-extra-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+  }
+
+  .about-extra-card {
+      padding: 1.25rem;
+  }
+
+  .about-extra-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+  }
+
+  .hobby-tags {
+      gap: 0.5rem;
+  }
+
+  .hobby-tag {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+  }
+
+  .about-list li {
+      font-size: 0.95rem;
   }
 }
